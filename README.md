@@ -12,9 +12,30 @@ The goal of this project is to create a visually appealing 3D representation of 
 
 ## Preview
 
-![Forest House Preview](path/to/preview/image.png)
+<img src="Output/img1.jpg" alt="Image 1" width="400" style="border-radius: 0.5em;">
+<img src="Output/img2.jpg" alt="Image 2" width="400" style="border-radius: 0.5em;">
+<img src="Output/img3.jpg" alt="Image 3" width="400" style="border-radius: 0.5em;">
+<img src="Output/img4.jpg" alt="Image 4" width="400" style="border-radius: 0.5em;">
+<img src="Output/img5.jpg" alt="Image 5" width="400" style="border-radius: 0.5em;">
+<img src="Output/img6.jpg" alt="Image 6" width="400" style="border-radius: 0.55em;">
 
-##Link to the model
+## Video
+<video width="400" controls style="border-radius: 0.55em;">
+  <source src="Output/output.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+## Features
+- 3D model loading and configuring
+- AmbientLight and DirectionalLight simulating sunlight for casting shadows
+- Event listeners for window resizing, mouse movement, and keyboard input
+- Rotates the 3D model around the y-axis to add animation
+- User interaction based on cursor movement
+- Day/Night mode
+- Error handling
+- Responsive design
+
+## Link to the model
 https://sketchfab.com/3d-models/forest-house-5646e6a3c8834022a0e289465f0bbc5d
 
 ## Getting Started

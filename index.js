@@ -16,6 +16,7 @@ function init() {
     animate(); // Start animation loop
 }
 
+
 // Function to set up the 3D scene
 function setupScene() {
     // Create a new scene
@@ -23,11 +24,11 @@ function setupScene() {
 
     // Set up the camera to keep the model centered
     const modelCenter = new THREE.Vector3(0, 0, 0);
-    const cameraDistance = 15; //setting up constant distance to ensure it is responsive
+    const cameraDistance = 15; // Setting up constant distance to ensure responsiveness
 
-    // Create a perspective camera with a field of view of 75 degrees,
+    // Create a perspective camera
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    // Set the camera's position relative to the model's center,ensuring the model is centered within the view.
+    // Set the camera's position relative to the model's center
     camera.position.copy(modelCenter.clone().add(new THREE.Vector3(cameraDistance, cameraDistance / 2, cameraDistance)));
 }
 
@@ -49,7 +50,12 @@ function loadModel() {
             // Apply smooth shading to model materials
             model.traverse((child) => {
                 if (child.isMesh) {
-                    child.material.flatShading = true;
+                    child.castShadow = true; // Enable shadow casting
+                    child.receiveShadow = true; // Enable shadow receiving
+
+                    // Adjust material properties for better shadow effects
+                    child.material.flatShading = true; // Apply flat shading
+                    child.material.side = THREE.DoubleSide; // Ensure both sides of geometry receive shadows
                 }
             });
 
@@ -60,8 +66,8 @@ function loadModel() {
             controls.enableZoom = true;
         },
         undefined,
-        //handling errors in loading the model
-        function (error) { 
+        //Handling errors in loading the model
+        function (error) {
             console.error('Error loading model:', error);
         }
     );
@@ -72,10 +78,15 @@ function loadModel() {
 function setupRenderer() {
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
+    
     // Set the pixel ratio to match the device's pixel density for better rendering on high-resolution displays
     renderer.setPixelRatio(window.devicePixelRatio);
     // Set the background color of the renderer, during night its dark blue and at day it is sky blue
     renderer.setClearColor(0x191970);
+        
+    renderer.shadowMap.enabled = true; // Enable shadow mapping in the renderer
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Soft shadows for smoother edges
+
     document.body.appendChild(renderer.domElement);
 }
 
@@ -83,13 +94,38 @@ function setupRenderer() {
 // Function to set up ambient and directional lights
 function setupLights() {
     // Add ambient light
-    ambientLight = new THREE.AmbientLight(0xffffff, 0);
+    ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Adjust ambient light intensity
     scene.add(ambientLight);
 
     // Add directional light (simulating sunlight)
     const sunLight = new THREE.DirectionalLight(0xffe4c4, 1);
-    sunLight.position.set(10, 10, 0);
+    sunLight.position.set(40, 50, 40);
+
+    // Enable shadow casting from the directional light
+    sunLight.castShadow = true;
+    sunLight.shadow.mapSize.width = 2048; // Shadow map resolution
+    sunLight.shadow.mapSize.height = 2048;
+
+    // Set up shadow camera frustum to focus the shadow in a diagonal direction
+    const shadowCameraSize = 20; 
+    sunLight.shadow.camera.left = -shadowCameraSize;
+    sunLight.shadow.camera.right = shadowCameraSize;
+    sunLight.shadow.camera.top = -shadowCameraSize;
+    sunLight.shadow.camera.bottom = shadowCameraSize;
+    sunLight.shadow.camera.near = 1;
+    sunLight.shadow.camera.far = 100;
+
     scene.add(sunLight);
+
+    // Configure model to receive and cast shadows
+    if (model) {
+        model.traverse((child) => {
+            if (child.isMesh) {
+                child.castShadow = true;
+                child.receiveShadow = true;
+            }
+        });
+    }
 }
 
 
@@ -168,6 +204,7 @@ function playAmbientSound() {
     ambientSound.play();
 }
 
+
 // Function to pause ambient sound
 function pauseAmbientSound() {
     const ambientSound = document.getElementById('ambientSound');
@@ -182,22 +219,20 @@ function handleKeyDown(event) {
         case 'ArrowUp':
             camera.position.z -= speed; // Move camera forward
             break;
-
         case 'ArrowDown':
             camera.position.z += speed; // Move camera backward
-            break; 
+            break;
     }
 }
 
 
 // Function to toggle ambient light
 function toggleLights() {
-    //Initially it is in dark/night mode
-    dark = !dark; //Toggles state when clicked on mode button
+    dark = !dark; // Toggle state when clicked on mode button
 
     // Toggle background color
     renderer.setClearColor(dark ? 0x191970 : 0x87CEEB);
-    
+
     const modeButton = document.getElementById('modeButton'); //Refers to mode button 
     const modeDisplay = document.getElementById('modeDisplay'); //Refers to moon and sun images
 
@@ -206,7 +241,7 @@ function toggleLights() {
         modeButton.style.backgroundImage = 'url(/media/night.png)';
         modeButton.style.backgroundPosition = 'left';
         modeDisplay.src = 'media/moon.png';
-        ambientLight.intensity = 0; // Ambient light off (dark mode)
+        ambientLight.intensity = 0.3; // Ambient light off (dark mode)
     } else {
         modeButton.style.backgroundColor = 'rgb(39, 196, 236)';
         modeButton.style.backgroundImage = 'url(/media/day.png)';
@@ -215,6 +250,7 @@ function toggleLights() {
         ambientLight.intensity = 1; // Ambient light on (day mode)
     }
 }
+
 
 // Call init() to start the application
 init();
