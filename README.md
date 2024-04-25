@@ -12,13 +12,13 @@ The goal of this project is to create a visually appealing 3D representation of 
 
 ## Preview
 
-<div style="align-items: center; justify-content: center">
-   <img src="Output/img1.png" alt="Image 1" width="400">
-   <img src="Output/img2.png" alt="Image 2" width="400">
-   <img src="Output/img3.png" alt="Image 3" width="400">
-   <img src="Output/img4.png" alt="Image 4" width="400">
-   <img src="Output/img5.png" alt="Image 5" width="400">
-   <img src="Output/img6.png" alt="Image 6" width="400">
+<div style="margin: 0vw 2vw 0vw 2vw">
+   <img src="Output/img1.png" alt="Image 1" width="500">
+   <img src="Output/img2.png" alt="Image 2" width="500">
+   <img src="Output/img3.png" alt="Image 3" width="500">
+   <img src="Output/img4.png" alt="Image 4" width="500">
+   <img src="Output/img5.png" alt="Image 5" width="500">
+   <img src="Output/img6.png" alt="Image 6" width="500">
 
 </div>
 
