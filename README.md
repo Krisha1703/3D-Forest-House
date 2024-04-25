@@ -12,15 +12,14 @@ The goal of this project is to create a visually appealing 3D representation of 
 
 ## Preview
 
-<img src="Output/img1.jpg" alt="Image 1" width="400" style="border-radius: 0.5em;">
-<img src="Output/img2.jpg" alt="Image 2" width="400" style="border-radius: 0.5em;">
-<img src="Output/img3.jpg" alt="Image 3" width="400" style="border-radius: 0.5em;">
-<img src="Output/img4.jpg" alt="Image 4" width="400" style="border-radius: 0.5em;">
-<img src="Output/img5.jpg" alt="Image 5" width="400" style="border-radius: 0.5em;">
-<img src="Output/img6.jpg" alt="Image 6" width="400" style="border-radius: 0.55em;">
+<img src="Output/img1.png" alt="Image 1" width="400" style="border-radius: 0.5em;">
+<img src="Output/img2.png" alt="Image 2" width="400" style="border-radius: 0.5em;">
+<img src="Output/img3.png" alt="Image 3" width="400" style="border-radius: 0.5em;">
+<img src="Output/img4.png" alt="Image 4" width="400" style="border-radius: 0.5em;">
+<img src="Output/img5.png" alt="Image 5" width="400" style="border-radius: 0.5em;">
+<img src="Output/img6.png" alt="Image 6" width="400" style="border-radius: 0.5em;">
 
-## Video
-<video width="400" controls style="border-radius: 0.55em;">
+<video width="400" controls style="border-radius: 0.5em;">
   <source src="Output/output.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
