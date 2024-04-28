@@ -92,4 +92,8 @@ canvas {
         width: 30vw;
         height: 10vh;
     }
+
+    .modelbtn{
+        margin-top: 10vw;
+    }
 }
