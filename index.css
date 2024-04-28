@@ -56,6 +56,31 @@ canvas {
     cursor: pointer;
 }
 
+.modelbtn{
+    background-color: darkmagenta;
+    color: white;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+    border: 0.4vw double white;
+    padding: 0.7vw 1vw;
+    position: absolute;
+    top: 10vw;
+    left: 5vw;
+}
+
+#btn2{
+    top:15vw;
+}
+
+#btn3{
+    top: 20vw;
+}
+
+#btn4{
+    top: 25vw;
+}
+
 /*CSS when the sun or moon image is hovered*/
 #modeDisplay:hover{
     opacity: 1;  /*Creates a glowing effect as intially it has opacity of 0.8*/

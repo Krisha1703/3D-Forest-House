@@ -1,7 +1,9 @@
 // Declare global variables
 let model;
+let scene;
 let ambientLight;
 let renderer;
+let cameraDistance;
 let controls;
 let dark = false;
 
@@ -9,7 +11,6 @@ let dark = false;
 // Entry point to initialize the application
 function init() {
     setupScene(); // Setup 3D scene
-    loadModel(); // Load 3D model
     setupRenderer(); // Setup WebGL renderer
     setupLights(); // Setup ambient and directional lights
     setupEventListeners(); // Setup event listeners
@@ -24,7 +25,7 @@ function setupScene() {
 
     // Set up the camera to keep the model centered
     const modelCenter = new THREE.Vector3(0, 0, 0);
-    const cameraDistance = 15; // Setting up constant distance to ensure responsiveness
+     cameraDistance = 10; // Setting up constant distance to ensure responsiveness
 
     // Create a perspective camera
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -34,11 +35,24 @@ function setupScene() {
 
 
 // Function to load the 3D model
-function loadModel() {
+function loadModel(modelPath) {
     const loader = new THREE.GLTFLoader();
     loader.load(
-        'forest_house/scene.gltf',
+        modelPath,
         function (gltf) {
+            if (model) {
+                scene.remove(model); // Remove the previous model from the scene
+            }
+
+            if (modelPath === "lowpoly_backpack/scene.gltf"){
+                cameraDistance = 1;
+            } else if (modelPath === "sugarcube_corner/scene.gltf"){
+                cameraDistance = 5;
+            } else if (modelPath === "2x2_cube/scene.gltf"){
+                cameraDistance = 2;
+            } else if (modelPath === "forest_house/scene.gltf"){
+                cameraDistance = 15;
+            }
             model = gltf.scene;
             scene.add(model);
 
@@ -59,6 +73,9 @@ function loadModel() {
                 }
             });
 
+             // Update camera position
+             camera.position.copy(center.clone().add(new THREE.Vector3(cameraDistance, cameraDistance / 2, cameraDistance)));
+
             // Setup orbit controls
             controls = new THREE.OrbitControls(camera, renderer.domElement);
             controls.enableDamping = true;
@@ -76,7 +93,7 @@ function loadModel() {
 
 // Function to set up the WebGL renderer
 function setupRenderer() {
-    renderer = new THREE.WebGLRenderer();
+    renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     
     // Set the pixel ratio to match the device's pixel density for better rendering on high-resolution displays

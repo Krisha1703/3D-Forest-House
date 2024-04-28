@@ -10,8 +10,13 @@
 </head>
 <body>
 
-    <!-- Mode button switch between day and night -->
-    <button class="mode" id="modeButton" onclick="toggleLights()"></button>
+        <!-- Mode button switch between day and night -->
+        <button class="mode" id="modeButton" onclick="toggleLights()"></button>
+        <button onclick="loadModel('2x2_cube/scene.gltf')" class="modelbtn" id="btn1">Load Cube Model</button>
+        <button onclick="loadModel('forest_house/scene.gltf')" class="modelbtn" id="btn2">Load Forest House Model</button>
+        <button onclick="loadModel('lowpoly_backpack/scene.gltf')" class="modelbtn" id="btn3">Load School Backpack Model</button>
+        <button onclick="loadModel('sugarcube_corner/scene.gltf')" class="modelbtn" id="btn4">Load Sugarcube Corner Model</button>
+   
     
     <!-- Moon image for night and the image changes to Sun when its day -->
     <img src="media/moon.png" id="modeDisplay">
@@ -21,6 +26,8 @@
         <source src="media/background_music.mp4" type="video/mp4">
         Your browser does not support the audio element.
     </audio>
+
+   
     
     <!-- Link to three.js -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.139.0/build/three.min.js"></script>
