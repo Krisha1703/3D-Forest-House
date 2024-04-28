@@ -33,7 +33,10 @@ The goal of this project is to create a visually appealing 3D representation of 
 - Responsive design
 
 ## Link to the model
+https://sketchfab.com/3d-models/2x2-cube-962e1b567615457cb8947a9cc0f25157
 https://sketchfab.com/3d-models/forest-house-5646e6a3c8834022a0e289465f0bbc5d
+https://sketchfab.com/3d-models/lowpoly-backpack-3bd5bb0beb384d41a7d22dcdc84da455
+https://sketchfab.com/3d-models/sugarcube-corner-1a70d3380d534ae589c452ada453f7a4
 
 ## Getting Started
 
